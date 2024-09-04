@@ -1,37 +1,36 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { Stack } from "expo-router";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+export default function Layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <>
       <Stack>
+        <Stack.Screen name="index" options={{ title: "welcome " }} />
+        <Stack.Screen name="/userInput/Gender" options={{ title: "Gender" }} />
+        <Stack.Screen name="/userInput/Name" options={{ title: "Name" }} />
+        <Stack.Screen name="/userInput/Goal" options={{ title: "Goal" }} />
+        <Stack.Screen
+          name="userInput/BodyType"
+          options={{ title: " Body Type" }}
+        />
+        <Stack.Screen
+          name="userInput/WorkoutExperience"
+          options={{ title: "Workout Experience" }}
+        />
+        <Stack.Screen name="userInput/Age" options={{ title: "Enter Age" }} />
+        <Stack.Screen
+          name="userInput/Height"
+          options={{ title: "Enter Height" }}
+        />
+        <Stack.Screen
+          name="userInput/Weight"
+          options={{ title: "Enter Weight" }}
+        />
+        <Stack.Screen
+          name="userInput/WorkoutLocation"
+          options={{ title: "Workout Location" }}
+        />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
       </Stack>
-    </ThemeProvider>
+    </>
   );
 }
