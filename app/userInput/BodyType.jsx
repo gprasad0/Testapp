@@ -12,7 +12,7 @@ export default function BodyType() {
       console.log("Selected Body Type:", bodyType);
       router.push("/userInput/WorkoutExperience"); // Navigate to the next screen (adjust this path as needed)
     } else {
-      alert("Please select a body type.");
+      alert("Please select a body type!");
     }
   };
 
