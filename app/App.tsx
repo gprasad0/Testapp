@@ -1,9 +1,8 @@
 import { useRouter } from "expo-router";
-import { Button,Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 
-export const App = () =>{
-
-    const router = useRouter();
+const App = () => {
+  const router = useRouter();
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <Text>Welcome to the Fitness App!</Text>
@@ -17,4 +16,6 @@ export const App = () =>{
       />
     </View>
   );
-}
+};
+
+export default App;

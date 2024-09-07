@@ -30,6 +30,7 @@ export default function Layout() {
           options={{ title: "Workout Location" }}
         />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="/Counter" options={{ headerShown: false }} />
       </Stack>
     </>
   );

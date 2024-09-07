@@ -1,10 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { Counter } from "../Counter";
 
 export default function Workout() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Workout Screen</Text>
+      <Counter />
     </View>
   );
 }
