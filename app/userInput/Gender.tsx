@@ -1,15 +1,19 @@
+import { setGender } from "@/redux/userSlice";
 import { useRouter } from "expo-router";
 import React, { useState } from "react"; // Import useState from React
 import { Button, StyleSheet, Text, View } from "react-native";
 import { RadioButton } from "react-native-paper"; // Import RadioButton from react-native-paper
+import { useDispatch } from "react-redux";
 
 export default function Gender() {
-  const [gender, setGender] = useState(""); // State to track the selected gender
+  const [gender, setLocalGender] = useState(""); // State to track the selected gender
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
     if (gender) {
       console.log("Selected Gender:", gender);
+      dispatch(setGender(gender));
       router.push("/userInput/Name"); // Navigate to the next screen
     } else {
       alert("Please select a gender.");
@@ -20,7 +24,7 @@ export default function Gender() {
     <View style={styles.container}>
       <Text style={styles.title}>Select Your Gender</Text>
       <RadioButton.Group
-        onValueChange={(newValue) => setGender(newValue)}
+        onValueChange={(newValue) => setLocalGender(newValue)}
         value={gender}
       >
         <View style={styles.radioItem}>

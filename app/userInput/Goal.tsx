@@ -1,43 +1,39 @@
+import { setGoal } from "@/redux/userSlice";
 import { useRouter } from "expo-router"; // Import useRouter from expo-router
 import React, { useState } from "react"; // Import React and useState
 import { Button, StyleSheet, Text, View } from "react-native"; // Import necessary components from React Native
 import { RadioButton } from "react-native-paper"; // Import RadioButton from react-native-paper
+import { useDispatch } from "react-redux";
 
-export default function WorkoutExperience() {
-  const [experience, setExperience] = useState(""); // State to track the selected workout experience
+export default function Goal() {
+  const [goal, setLocalGoal] = useState(""); // State to track the selected goal
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
-    if (experience) {
-      console.log("Selected Workout Experience:", experience);
-      router.push("/userInput/Age");
+    if (goal) {
+      console.log("Selected Goal:", goal);
+      dispatch(setGoal(goal));
+      router.push("/userInput/BodyType"); // Navigate to the next screen (adjust this path as needed)
     } else {
-      alert("Please select a workout experience.");
+      alert("Please select a goal.");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Select Your Workout Experience</Text>
+      <Text style={styles.title}>Select Your Fitness Goal</Text>
       <RadioButton.Group
-        onValueChange={(newValue) => setExperience(newValue)}
-        value={experience}
+        onValueChange={(newValue) => setLocalGoal(newValue)}
+        value={goal}
       >
         <View style={styles.radioItem}>
-          <RadioButton value="regularly" />
-          <Text>Yes, I workout regularly</Text>
+          <RadioButton value="muscle_gain" />
+          <Text>Muscle Gain</Text>
         </View>
         <View style={styles.radioItem}>
-          <RadioButton value="less_than_a_year" />
-          <Text>Yes, Less than a year</Text>
-        </View>
-        <View style={styles.radioItem}>
-          <RadioButton value="more_than_a_year" />
-          <Text>Yes, more than a year</Text>
-        </View>
-        <View style={styles.radioItem}>
-          <RadioButton value="none" />
-          <Text>No, I don't have any</Text>
+          <RadioButton value="weight_loss" />
+          <Text>Weight Loss</Text>
         </View>
       </RadioButton.Group>
 

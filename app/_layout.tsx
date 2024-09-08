@@ -1,16 +1,21 @@
+// app/_layout.tsx
 import { Stack } from "expo-router";
+import { Provider } from "react-redux";
+import store from "./store";
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <>
+    <Provider store={store}>
       <Stack>
-        <Stack.Screen name="index" options={{ title: "welcome " }} />
-        <Stack.Screen name="/userInput/Gender" options={{ title: "Gender" }} />
-        <Stack.Screen name="/userInput/Name" options={{ title: "Name" }} />
-        <Stack.Screen name="/userInput/Goal" options={{ title: "Goal" }} />
+        <Stack.Screen name="index" options={{ title: "Welcome" }} />
+
+        {/* User Input Screens */}
+        <Stack.Screen name="userInput/Gender" options={{ title: "Gender" }} />
+        <Stack.Screen name="userInput/Name" options={{ title: "Name" }} />
+        <Stack.Screen name="userInput/Goal" options={{ title: "Goal" }} />
         <Stack.Screen
           name="userInput/BodyType"
-          options={{ title: " Body Type" }}
+          options={{ title: "Body Type" }}
         />
         <Stack.Screen
           name="userInput/WorkoutExperience"
@@ -29,9 +34,10 @@ export default function Layout() {
           name="userInput/WorkoutLocation"
           options={{ title: "Workout Location" }}
         />
+
+        {/* Tab Navigator */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="/Counter" options={{ headerShown: false }} />
       </Stack>
-    </>
+    </Provider>
   );
 }

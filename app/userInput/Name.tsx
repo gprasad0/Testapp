@@ -1,14 +1,17 @@
+import { setName } from "@/redux/userSlice";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
+import { useDispatch } from "react-redux";
 
 export default function Name() {
-  const [name, setName] = useState(""); // State to track the inputted name
+  const [name, setLocalName] = useState(""); // State to track the inputted name
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
     if (name.trim()) {
-      // Check if the name is not empty
+      dispatch(setName(name));
       console.log("User Name:", name);
       router.push("/userInput/Goal"); // Navigate to the next screen
     } else {
@@ -23,7 +26,7 @@ export default function Name() {
         style={styles.input}
         placeholder="Your Name"
         value={name}
-        onChangeText={setName} // Update state with the input value
+        onChangeText={setLocalName} // Update state with the input value
       />
       <Button title="Next" onPress={handleNext} />
     </View>

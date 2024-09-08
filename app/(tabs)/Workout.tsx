@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Counter } from "../Counter";
+import Counter from "../Counter";
 
 export default function Workout() {
   return (

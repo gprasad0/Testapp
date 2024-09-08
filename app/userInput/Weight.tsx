@@ -1,30 +1,33 @@
+import { setWeight } from "@/redux/userSlice";
 import { useRouter } from "expo-router"; // Import useRouter from expo-router
 import React, { useState } from "react"; // Import React and useState
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"; // Import necessary components from React Native
+import { useDispatch } from "react-redux";
 
-export default function Age() {
-  const [age, setAge] = useState(""); // State to track the entered age
+export default function Weight() {
+  const [weight, setLocalWeight] = useState(""); // State to track the entered weight
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
-    if (age.trim()) {
-      // Check if age is not empty
-      console.log("Entered Age:", age);
-      router.push("/userInput/Height"); // Navigate to the next screen (adjust this path as needed)
+    if (weight.trim()) {
+      dispatch(setWeight(weight));
+      console.log("Entered Weight:", weight);
+      router.push("/userInput/WorkoutLocation"); // Navigate to the next screen (adjust this path as needed)
     } else {
-      alert("Please enter your age.");
+      alert("Please enter your weight.");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Enter Your Age</Text>
+      <Text style={styles.title}>Enter Your Weight (in kg)</Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric" // Only show numeric keyboard
-        placeholder="Enter your age"
-        value={age}
-        onChangeText={(text) => setAge(text)}
+        placeholder="Enter your weight in kg"
+        value={weight}
+        onChangeText={(text) => setLocalWeight(text)}
       />
       <Button title="Next" onPress={handleNext} />
     </View>
