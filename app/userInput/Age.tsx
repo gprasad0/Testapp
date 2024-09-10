@@ -1,30 +1,34 @@
+import { setAge } from "@/redux/userSlice";
 import { useRouter } from "expo-router"; // Import useRouter from expo-router
 import React, { useState } from "react"; // Import React and useState
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"; // Import necessary components from React Native
+import { useDispatch } from "react-redux";
 
-export default function Height() {
-  const [height, setHeight] = useState(""); // State to track the entered height
+export default function Age() {
+  const [age, setAgeLocal] = useState(""); // State to track the entered age
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
-    if (height.trim()) {
-      // Check if height is not empty
-      console.log("Entered Height:", height);
-      router.push("/userInput/Weight"); // Navigate to the next screen (adjust this path as needed)
+    if (age.trim()) {
+      // Check if age is not empty
+      console.log("Entered Age:", age);
+      dispatch(setAge(age));
+      router.push("/userInput/Height"); // Navigate to the next screen (adjust this path as needed)
     } else {
-      alert("Please enter your height.");
+      alert("Please enter your age.");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Enter Your Height (in cm)</Text>
+      <Text style={styles.title}>Enter Your Age</Text>
       <TextInput
         style={styles.input}
         keyboardType="numeric" // Only show numeric keyboard
-        placeholder="Enter your height in cm"
-        value={height}
-        onChangeText={(text) => setHeight(text)}
+        placeholder="Enter your age"
+        value={age}
+        onChangeText={(text) => setAgeLocal(text)}
       />
       <Button title="Next" onPress={handleNext} />
     </View>

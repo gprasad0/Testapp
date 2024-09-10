@@ -1,45 +1,50 @@
+import { setWorkoutExperience } from "@/redux/userSlice";
 import { useRouter } from "expo-router"; // Import useRouter from expo-router
 import React, { useState } from "react"; // Import React and useState
 import { Button, StyleSheet, Text, View } from "react-native"; // Import necessary components from React Native
 import { RadioButton } from "react-native-paper"; // Import RadioButton from react-native-paper
+import { useDispatch } from "react-redux";
 
-export default function WorkoutLocation() {
-  const [location, setLocation] = useState(""); // State to track the selected workout location
+export default function WorkoutExperience() {
+  const [experience, setLocalExperience] = useState(""); // State to track the selected workout experience
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleNext = () => {
-    if (location) {
-      console.log("Selected Location:", location);
-      router.push("/Dashboard"); // Navigate to the next screen (adjust this path as needed)
+    if (experience) {
+      dispatch(setWorkoutExperience(experience));
+      console.log("Selected Workout Experience:", experience);
+      router.push("/userInput/Age");
     } else {
-      alert("Please select a workout location.");
+      alert("Please select a workout experience.");
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Where Do You Prefer to Workout?</Text>
+      <Text style={styles.title}>Select Your Workout Experience</Text>
       <RadioButton.Group
-        onValueChange={(newValue) => setLocation(newValue)}
-        value={location}
+        onValueChange={(newValue) => setLocalExperience(newValue)}
+        value={experience}
       >
         <View style={styles.radioItem}>
-          <RadioButton value="home" />
-          <Text>At Home</Text>
+          <RadioButton value="regularly" />
+          <Text>Yes, I workout regularly</Text>
         </View>
         <View style={styles.radioItem}>
-          <RadioButton value="gym" />
-          <Text>At the Gym</Text>
+          <RadioButton value="less_than_a_year" />
+          <Text>Yes, Less than a year</Text>
         </View>
         <View style={styles.radioItem}>
-          <RadioButton value="studio" />
-          <Text>Studio Classes</Text>
+          <RadioButton value="more_than_a_year" />
+          <Text>Yes, more than a year</Text>
         </View>
         <View style={styles.radioItem}>
-          <RadioButton value="outdoor" />
-          <Text>Outdoor</Text>
+          <RadioButton value="none" />
+          <Text>No, I don't have any</Text>
         </View>
       </RadioButton.Group>
+
       <Button title="Next" onPress={handleNext} />
     </View>
   );
