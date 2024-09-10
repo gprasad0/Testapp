@@ -1,0 +1,41 @@
+{
+    "rice": {
+        "name": "Rice",
+        "type": "generic",
+        "foodTime": {
+            "morning": "morning",
+            "night": "night"
+        },
+        "macros": {
+            "protein": 1,
+            "carbs": 1
+        }
+    },
+    "dosa": {
+        "name": "Dosa",
+        "type": "South",
+        "foodTime": "morning",
+        "macros": {
+            "protein": 1,
+            "carbs": 1
+        }
+    },
+    "idli": {
+        "name": "Idli",
+        "type": "South",
+        "foodTime": "afternoon",
+        "macros": {
+            "protein": 1,
+            "carbs": 1
+        }
+    },
+    "paratha": {
+        "name": "Paratha",
+        "type": "North",
+        "foodTime": "dinner",
+        "macros": {
+            "protein": 1,
+            "carbs": 1
+        }
+    }
+}
